@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_ecomerce_app/models/product.dart';
+import 'package:minimal_ecomerce_app/models/shop.dart';
 import 'package:provider/provider.dart';
 
 class MyProductTile extends StatelessWidget {
@@ -19,7 +20,7 @@ class MyProductTile extends StatelessWidget {
           MaterialButton(
             onPressed: () {
               Navigator.of(context).pop();
-              context.read().addToCart(product);
+              context.read<Shop>().addToCart(product);
             },
             child: Text("Yes"),
           ),
@@ -79,6 +80,7 @@ class MyProductTile extends StatelessWidget {
                   color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(12.0),
                 ),
+                padding: EdgeInsets.all(8.0),
                 child: IconButton(
                   onPressed: () => addToCart(context),
                   icon: Icon(Icons.add),
