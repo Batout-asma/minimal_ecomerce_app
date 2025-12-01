@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_ecomerce_app/components/my_button.dart';
 import 'package:minimal_ecomerce_app/models/product.dart';
 import 'package:minimal_ecomerce_app/models/shop.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,15 @@ class CartPage extends StatelessWidget {
     );
   }
 
+  void payButtonPressed(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text("User wants to pay! Connect to payment gateway.."),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cart = context.watch<Shop>().cart;
@@ -43,19 +53,31 @@ class CartPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                final item = cart[index];
-                return ListTile(
-                  title: Text(item.name),
-                  subtitle: Text("\$${item.price.toStringAsFixed(2)}"),
-                  trailing: IconButton(
-                    icon: Icon(Icons.remove),
-                    onPressed: () => removeFromCart(context, item),
+            child: cart.isEmpty
+                ? Center(child: Text("Cart is empty.."))
+                : ListView.builder(
+                    itemBuilder: (context, index) {
+                      final item = cart[index];
+                      return ListTile(
+                        title: Text(item.name),
+                        subtitle: Text("\$${item.price.toStringAsFixed(2)}"),
+                        trailing: IconButton(
+                          icon: Icon(Icons.remove),
+                          onPressed: () => removeFromCart(context, item),
+                        ),
+                      );
+                    },
+                    itemCount: cart.length,
                   ),
-                );
-              },
-              itemCount: cart.length,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Container(
+              width: double.infinity,
+              child: MyButton(
+                onTap: () => payButtonPressed(context),
+                child: Center(child: Text("P A Y   N O W")),
+              ),
             ),
           ),
         ],
