@@ -11,18 +11,27 @@ class MyProductTile extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        content: Text("Add this item to your cart?"),
+        content: Text(
+          "Add this item to your cart?",
+          style: TextStyle(fontFamily: 'Roboto-Condensed'),
+        ),
         actions: [
           MaterialButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text("Cancel"),
+            child: Text(
+              "Cancel",
+              style: TextStyle(fontFamily: 'Roboto-Condensed'),
+            ),
           ),
           MaterialButton(
             onPressed: () {
               Navigator.of(context).pop();
               context.read<Shop>().addToCart(product);
             },
-            child: Text("Yes"),
+            child: Text(
+              "Yes",
+              style: TextStyle(fontFamily: 'Roboto-Condensed'),
+            ),
           ),
         ],
       ),
@@ -39,6 +48,7 @@ class MyProductTile extends StatelessWidget {
       margin: EdgeInsets.all(10.0),
       padding: EdgeInsets.all(25.0),
       width: 300,
+      height: 500,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,17 +65,23 @@ class MyProductTile extends StatelessWidget {
                   ),
                   width: double.infinity,
                   padding: EdgeInsets.all(25.0),
-                  child: Icon(Icons.favorite),
+                  child: Image.asset(product.imagePath),
                 ),
               ),
               SizedBox(height: 25.0),
               Text(
                 product.name,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                  fontFamily: 'Roboto-Condensed',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
+              SizedBox(height: 10.0),
               Text(
                 product.description,
                 style: TextStyle(
+                  fontFamily: 'Roboto-Condensed',
                   color: Theme.of(context).colorScheme.inversePrimary,
                 ),
               ),
@@ -74,7 +90,10 @@ class MyProductTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('\$${product.price.toStringAsFixed(2)}'),
+              Text(
+                '\$${product.price.toStringAsFixed(2)}',
+                style: TextStyle(fontFamily: 'Roboto-Condensed'),
+              ),
               Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,

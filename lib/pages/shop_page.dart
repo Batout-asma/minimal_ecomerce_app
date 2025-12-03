@@ -12,7 +12,6 @@ class ShopPage extends StatelessWidget {
     final products = context.watch<Shop>().shop;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Shop Page"),
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -32,16 +31,32 @@ class ShopPage extends StatelessWidget {
         padding: const EdgeInsets.only(top: 25.0),
         child: ListView(
           children: [
-            Center(
-              child: Text(
-                "Pick from a selected list of premium products:",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.inversePrimary,
-                ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Shop",
+                    style: TextStyle(
+                      fontFamily: 'Roboto-Condensed',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Pick from a selected list of premium products:",
+                    style: TextStyle(
+                      fontFamily: 'Roboto-Condensed',
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(
-              height: 550,
+              height: 600,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: products.length,

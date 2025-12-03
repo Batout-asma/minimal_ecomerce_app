@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:minimal_ecomerce_app/components/my_button.dart';
 
 class IntroPage extends StatelessWidget {
@@ -12,21 +13,29 @@ class IntroPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.shopping_bag,
-              size: 72,
-              color: Theme.of(context).colorScheme.inversePrimary,
+            Transform.scale(
+              scale: 3.5,
+              child: Lottie.network(
+                'https://lottie.host/a28e5df3-afcd-4ce6-83ae-b6edcd657138/URARCa9zZ9.json',
+                width: 150,
+                height: 150,
+                repeat: true,
+                animate: true,
+              ),
             ),
-
-            SizedBox(height: 25),
             Text(
-              "Minimal Shop",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+              "MINIMAL SHOP",
+              style: TextStyle(
+                fontFamily: 'Roboto-Condensed',
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
             ),
             SizedBox(height: 10),
             Text(
-              "Premium Quality Products",
+              "Made By Batoutiva",
               style: TextStyle(
+                fontFamily: 'Roboto-Condensed',
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
             ),
